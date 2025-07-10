@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: my-django-app
+    env: python
+    buildCommand: ""
+    startCommand: gunicorn myproject.wsgi
+    envVars:
+      - key: DJANGO_SECRET_KEY
+        value: твой-секретный-ключ
+      - key: DEBUG
+        value: False
+      - key: DATABASE_URL
+        fromDatabase:
+          name: my-django-db
+          property: connectionString
+
+databases:
+  - name: my-django-db
+    databaseName: mydb
+    user: myuser

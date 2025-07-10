@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Список книг</title>
+</head>
+<body>
+  <h1>Книги</h1>
+
+  <ul>
+    {% for book in page_obj %}
+      <li>{{ book.title }} — {{ book.author }}</li>
+    {% empty %}
+      <li>Книг пока нет.</li>
+    {% endfor %}
+  </ul>
+
+  <nav aria-label="Page navigation">
+    <ul>
+      {% if page_obj.has_previous %}
+        <li><a href="?page={{ page_obj.previous_page_number }}">&laquo; Назад</a></li>
+      {% else %}
+        <li>Назад</li>
+      {% endif %}
+
+      {% for num in page_obj.paginator.page_range %}
+        {% if page_obj.number == num %}
+          <li><strong>{{ num }}</strong></li>
+        {% else %}
+          <li><a href="?page={{ num }}">{{ num }}</a></li>
+        {% endif %}
+      {% endfor %}
+
+      {% if page_obj.has_next %}
+        <li><a href="?page={{ page_obj.next_page_number }}">Вперёд &raquo;</a></li>
+      {% else %}
+        <li>Вперёд</li>
+      {% endif %}
+    </ul>
+  </nav>
+</body>
+</html>
