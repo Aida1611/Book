@@ -68,7 +68,7 @@ ROOT_URLCONF = 'ebook_project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],  # добавь пути к шаблонам, если нужно
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],  #  добавь пути к шаблонам, если нужно
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
